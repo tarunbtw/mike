@@ -1,16 +1,18 @@
-import { NextResponse } from 'next/server';
-
 export const config = {
-  matcher: '/e1.txt', // This ensures the code only runs for e1.txt
+  matcher: '/e1.txt',
 };
 
-export function middleware(request) {
+export default function middleware(request) {
   const userAgent = request.headers.get('user-agent') || '';
 
+  // If it's curl, just return (this lets the request pass to the file)
   if (userAgent.toLowerCase().includes('curl')) {
-    return NextResponse.next(); // Let curl through
+    return; 
   }
 
-  // Block everyone else
-  return new NextResponse('Access Denied. Terminal access only.', { status: 403 });
+  // If it's anything else (Browser), show a 404 error
+  return new Response('404 Not Found', {
+    status: 404,
+    headers: { 'content-type': 'text/plain' },
+  });
 }
