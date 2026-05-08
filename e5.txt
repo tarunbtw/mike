@@ -1,0 +1,53 @@
+<!DOCTYPE html> 
+<html ng-app="planetApp"> 
+<head> 
+    <title>Planet Table</title> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> 
+</head> 
+ 
+<body ng-controller="planetCtrl"> 
+<h2>Planet Details</h2> 
+Search: <input type="text" ng-model="searchText"> 
+<br><br> 
+Sort by: 
+<select ng-model="sortField"> 
+    <option value="name">Name</option> 
+    <option value="type">Type</option> 
+    <option value="distance">Distance</option> 
+    <option value="moons">Moons</option> 
+</select> 
+ 
+<br><br> 
+ 
+<table border="1"> 
+<tr> 
+    <th>Name</th> 
+    <th>Type</th> 
+    <th>Distance</th> 
+    <th>Moons</th> 
+</tr> 
+ 
+<tr ng-repeat="p in planets | filter:searchText | orderBy:sortField"> 
+    <td>{{p.name}}</td> 
+    <td>{{p.type}}</td> 
+    <td>{{p.distance}}</td> 
+    <td>{{p.moons}}</td> 
+</tr> 
+ 
+</table> 
+ 
+<script> 
+var app = angular.module("planetApp", []); 
+ 
+app.controller("planetCtrl", function($scope){ 
+    $scope.planets = [ 
+        {name:"Earth", type:"Terrestrial", distance:149, moons:1}, 
+        {name:"Mars", type:"Terrestrial", distance:228, moons:2}, 
+        {name:"Jupiter", type:"Gas Giant", distance:778, moons:79}, 
+        {name:"Saturn", type:"Gas Giant", distance:1427, moons:83} 
+    ]; 
+}); 
+</script> 
+ 
+</body> 
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>Presidency University Registration</title> 
+    <script> 
+        function validateForm() { 
+            let fname = document.getElementById("fname").value; 
+            let lname = document.getElementById("lname").value; 
+            let email = document.getElementById("email").value; 
+            let password = document.getElementById("password").value; 
+            let address = document.getElementById("address").value; 
+            let phone = document.getElementById("phone").value; 
+            let gender = document.querySelector('input[name="gender"]:checked'); 
+            let namePattern = /^[A-Za-z]+$/; 
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+            let passPattern = /^[A-Za-z0-9]+$/; 
+            if (fname == "" || !namePattern.test(fname) || fname.length < 6) { 
+                alert("First name must be at least 6 letters and only alphabets"); 
+                return false; 
+            } 
+            if (!namePattern.test(lname)) { 
+                alert("Last name must contain only alphabets"); 
+                return false; 
+            }  
+            if (!emailPattern.test(email)) { 
+                alert("Enter valid email (name@domain.com)"); 
+                return false; 
+            }
+            if (password.length < 6 || !passPattern.test(password)) { 
+                alert("Password must be at least 6 characters and only letters/numbers"); 
+                return false; 
+            } 
+            if (address == "") { 
+                alert("Address cannot be empty"); 
+                return false; 
+            } 
+            if (!/^\d{10}$/.test(phone)) { 
+                alert("Phone must be 10 digits only"); 
+                return false; 
+            } 
+            if (!gender) { 
+                alert("Select gender"); 
+                return false; 
+            } 
+            alert("Registration done successfully"); 
+            return true; 
+        } 
+    </script> 
+</head> 
+<body> 
+<h2>Student Registration</h2> 
+<form onsubmit="return validateForm()"> 
+    First Name: <input type="text" id="fname"><br><br> 
+    Last Name: <input type="text" id="lname"><br><br> 
+    Email: <input type="text" id="email"><br><br> 
+    Password: <input type="password" id="password"><br><br> 
+    Address: <textarea id="address"></textarea><br><br> 
+    Mobile: <input type="text" id="phone"><br><br> 
+    Gender: 
+    <input type="radio" name="gender" value="male">Male 
+    <input type="radio" name="gender" value="female">Female<br><br> 
+    <input type="submit" value="Submit"> 
+    <input type="reset" value="Cancel"> 
+</form> 
+</body> 
+</html>
