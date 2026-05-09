@@ -1,0 +1,590 @@
+Theory Questions Study Guide
+
+--- SET A ---
+
+1) Explain HTML file & Canvas element.
+Canvas is used for drawing graphics using JavaScript.
+
+Syntax
+<canvas id="myCanvas" width="300" height="200"></canvas>
+
+Drawing Example
+<script>
+let c = document.getElementById("myCanvas");
+let ctx = c.getContext("2d");
+ctx.fillRect(50,50,100,100);
+</script>
+
+Explanation
+getContext("2d") creates drawing area
+fillRect() draws rectangle
+
+Uses
+* Games
+* Charts
+* Animations
+
+2) CSS3 transform property in detail.
+Transform changes shape, size, and position of elements.
+
+Types of Transform
+* translate()
+* rotate()
+* scale()
+* skew()
+
+Translate
+Moves element.
+div {
+transform: translate(50px, 20px);
+}
+
+Rotate
+Rotates element.
+div {
+transform: rotate(45deg);
+}
+
+Scale
+Changes size.
+div {
+transform: scale(2,1);
+}
+
+Skew
+Tilts element.
+div {
+transform: skew(20deg);
+}
+
+Combined Transform
+div {
+transform: rotate(30deg) scale(1.5);
+}
+
+Advantages
+* Animation support
+* Modern UI design
+
+3) Bootstrap with responsive design.
+Bootstrap is a popular front-end framework developed by Twitter for designing responsive and mobile-first web applications. It contains predefined CSS classes, grid systems, components, and JavaScript utilities that make web development faster.
+
+Features of Bootstrap
+* Mobile-first design
+* Responsive grid system
+* Predefined CSS classes
+* Ready-made UI components
+* Browser compatibility
+
+Bootstrap Grid System
+Bootstrap divides page width into 12 columns.
+
+Example
+<div class="container">
+<div class="row">
+    <div class="col-md-6">Left Side</div>
+    <div class="col-md-6">Right Side</div>
+</div>
+</div>
+
+Explanation
+container creates fixed-width layout
+row creates horizontal row
+col-md-6 occupies 6 columns each
+
+Responsive Breakpoints
+Bootstrap uses different screen sizes:
+* col-sm -> small devices
+* col-md -> medium devices
+* col-lg -> large devices
+* col-xl -> extra large devices
+
+Bootstrap Components
+Examples:
+* Buttons
+* Cards
+* Navbar
+* Alerts
+
+Button Example
+<button class="btn btn-primary">Submit</button>
+
+Advantages
+* Saves development time
+* Easy responsive design
+* Professional appearance
+
+
+--- SET B ---
+
+1) Explain fundamentals Angular & angular CLI.
+Angular
+Angular is a front-end framework developed by Google for building dynamic single-page applications.
+
+Features of Angular
+* Component-based architecture
+* TypeScript support
+* Dependency Injection
+* Routing
+* Reactive programming
+
+Angular Architecture
+Main building blocks:
+* Modules
+* Components
+* Templates
+* Services
+
+Component Example
+@Component({
+selector: 'app-root',
+template:'<h1>Hello Angular</h1>'
+})
+export class AppComponent{}
+
+Angular CLI
+Angular CLI is command-line tool for Angular project creation.
+
+Common Commands
+* ng new project-name
+* ng serve
+* ng generate component student
+* ng build
+
+Explanation
+ng new creates project
+ng serve runs application
+ng generate component creates component
+
+Benefits
+* Faster development
+* Automatic project structure
+* Easy testing
+
+2) Scrum fundamentals.
+Scrum is an Agile framework used to manage software development in short iterations called Sprints. It helps teams deliver working software continuously and quickly adapt to changing requirements. Unlike traditional models, Scrum focuses on collaboration, incremental delivery, and customer feedback.
+
+Basic Principles of Scrum
+* Work is divided into small increments
+* Development happens in fixed time cycles called Sprints
+* Team collaboration is essential
+* Frequent review and improvement are performed
+
+Sprint
+A Sprint is a fixed time period, usually 2 to 4 weeks, during which a set of features is developed. At the end of each Sprint, a usable product increment is delivered.
+
+Scrum Process Flow
+1. Product requirements collected
+2. Product backlog prepared
+3. Sprint planning done
+4. Development starts
+5. Daily meetings conducted
+6. Sprint review held
+7. Sprint retrospective performed
+
+Advantages of Scrum
+* Faster delivery
+* Easy change handling
+* Better communication
+* Higher product quality
+
+Importance in Software Industry
+Scrum is widely used because modern software projects need flexibility and quick customer response.
+
+3) GIT source control & deployment of react applications.
+Git Source Control
+Git tracks code changes and supports collaboration.
+
+Common Git Commands
+* git init
+* git add
+* git commit -m "first commit"
+* git push
+
+Branching
+Branches allow independent feature development.
+git branch feature1
+git checkout feature1
+
+Benefits
+* Version tracking
+* Collaboration
+* Easy rollback
+
+Deploying React App
+Build React project:
+npm run build
+Production files generated.
+
+Deployment Importance
+Deployment makes application available to users.
+
+
+--- SET C ---
+
+1) HTML5 syntax & attribute & events.
+HTML5 is the latest version of HTML used to create web pages and web applications. It introduced simpler syntax, new semantic elements, multimedia support, and browser APIs.
+
+HTML5 Syntax
+HTML5 syntax is simple and begins with the document declaration:
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sample Page</title>
+</head>
+<body>
+<h1>Hello World</h1>
+</body>
+</html>
+
+<!DOCTYPE html> declares HTML5 document type
+<html> is root element
+<head> contains metadata
+<title> gives page title
+<body> contains visible content
+
+HTML5 Attributes
+Attributes provide additional information to HTML elements.
+
+Common attributes
+* id
+* class
+* style
+* href
+* src
+* placeholder
+* required
+
+Example
+<input type="text" placeholder="Enter name" required>
+<a href="home.html">Home</a>
+placeholder shows hint text
+required makes field mandatory
+
+HTML5 Events
+Events are actions performed by user or browser.
+
+Common events
+* onclick
+* onchange
+* onmouseover
+* onkeyup
+
+Example
+<button onclick="alert('Clicked')">Click</button>
+When user clicks button, message appears.
+
+Advantages
+* Easy page structure
+* Supports multimedia
+* Better interaction
+
+2) Web forms 2.0.
+Web Forms 2.0 in HTML5 provides advanced form controls and validation.
+
+New Input Types
+* email
+* number
+* date
+* range
+* url
+
+Example
+<form>
+Email: <input type="email"><br>
+Age: <input type="number"><br>
+Date: <input type="date"><br>
+</form>
+
+New Attributes
+* required
+* autofocus
+* pattern
+* placeholder
+
+Example
+<input type="text" required autofocus placeholder="Name">
+
+Validation
+Browser automatically checks input.
+Example:
+<input type="email" required>
+If wrong email entered, browser shows error.
+
+Advantages
+* Less JavaScript needed
+* Better user experience
+* Automatic validation
+
+3) Web storage & web socket.
+Web Storage
+Web storage stores data inside browser.
+Two types:
+* localStorage
+* sessionStorage
+
+localStorage
+Stores data permanently until deleted.
+<script>
+localStorage.setItem("name", "Ananya");
+</script>
+Retrieve:
+<script>
+document.write(localStorage.getItem("name"));
+</script>
+
+sessionStorage
+Stores data only during browser session.
+sessionStorage.setItem("user", "student");
+
+Difference
+* localStorage: Permanent, Large storage
+* sessionStorage: Temporary, Session only
+
+Web Sockets
+Web sockets allow two-way communication between browser and server.
+
+Example
+let socket = new WebSocket("ws://server.com");
+socket.onopen = function() {
+};
+socket.send("Hello Server");
+
+Advantages
+* Real-time communication
+* Fast data transfer
+* Used in chat apps
+
+
+--- SET D ---
+
+1) CSS3 transform.
+Transform changes shape, size, and position of elements.
+
+Types of Transform
+* translate()
+* rotate()
+* scale()
+* skew()
+
+Translate
+Moves element.
+div {
+transform: translate(50px, 20px);
+}
+
+Rotate
+Rotates element.
+div {
+transform: rotate(45deg);
+}
+
+Scale
+Changes size.
+div {
+transform: scale(2,1);
+}
+
+Skew
+Tilts element.
+div {
+transform: skew(20deg);
+}
+
+Combined Transform
+div {
+transform: rotate(30deg) scale(1.5);
+}
+
+Advantages
+* Animation support
+* Modern UI design
+
+2) DOM in detail with example.
+DOM means Document Object Model. It represents HTML document as a tree of objects.
+
+DOM Structure
+HTML page becomes object tree:
+* document
+* html
+* head
+* body
+* elements
+
+Accessing Elements
+<p id="demo">Hello</p>
+<script>
+document.getElementById("demo").innerHTML="Welcome";
+</script>
+
+Explanation
+getElementById() selects element
+innerHTML changes content
+
+Changing Style
+document.getElementById("demo").style.color="red";
+
+Event Handling
+<button onclick="change()">Click</button>
+<script>
+function change () {
+document.body.style.background="yellow";
+}
+</script>
+
+DOM Methods
+* getElementById()
+* getElementsByClassName()
+* querySelector()
+
+Importance
+DOM allows dynamic page modification.
+
+3) Javascript obj & classes.
+Objects
+Objects store related data in key-value form.
+
+Example
+let student = {
+name: "Ravi",
+age: 20,
+marks: 90
+};
+
+Accessing Object Values
+console.log(student.name);
+
+Methods inside Object
+let person = {
+name: "Anil",
+greet: function () {
+    console.log("Hello");
+}
+};
+
+Classes
+Class is blueprint for objects.
+class Student {
+constructor (name, age) {
+    this.name = name;
+    this.age = age;
+}
+}
+
+Object Creation
+let sl = new Student("Ravi", 20);
+
+Benefits
+* Code reuse
+* Better organization
+
+
+--- SET E ---
+
+1) JQuery with example.
+jQuery is a lightweight JavaScript library that simplifies DOM manipulation, events, animations, and AJAX. Developed to reduce JavaScript coding complexity.
+
+Including jQuery
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+Syntax
+$(selector).action()
+
+Example
+$("#demo").hide();
+
+Event Example
+$("button").click(function() {
+$("p").hide();
+});
+
+DOM Manipulation
+$("#demo").text("Welcome");
+
+Advantages of jQuery
+* Less code
+* Easy selectors
+* Cross-browser support
+
+Applications
+* Form validation
+* Animations
+* AJAX requests
+
+2) asynchronous prog and AJAX in javascript.
+Asynchronous Programming
+Async allows tasks to run without blocking execution.
+
+Callback Example
+setTimeout(function(){
+console.log("Hello");
+}, 2000);
+
+Promise Example
+let p = new Promise(function(resolve, reject) {
+resolve("Success");
+});
+
+Async and Await
+async function test() {
+return "Done";
+}
+
+AJAX
+AJAX means Asynchronous JavaScript and XML. Used to update page without reloading.
+
+AJAX Example
+let xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if(this.readyState == 4 && this.status == 200) {
+    document.getElementById("demo").innerHTML = this.responseText;
+}
+};
+xhttp.open("GET", "data.txt", true);
+xhttp.send();
+
+Advantages
+* Fast updates
+* Better user experience
+
+3) Node JS & npm in detail.
+Introduction to Node.js
+Node.js is an open-source JavaScript runtime built on the V8 engine of Google. It allows JavaScript to run outside the browser. Traditionally JavaScript was used only in browsers, but Node.js made server-side JavaScript possible.
+
+Features of Node.js
+* Event-driven architecture
+* Non-blocking I/O operations
+* Fast execution
+* Single-threaded but highly scalable
+* Suitable for real-time applications
+
+Example of Node.js Program
+const http = require('http');
+http.createServer((req, res)=> {
+res.write("Hello Node.js");
+res.end();
+}).listen(3000);
+
+Explanation
+require('http') imports HTTP module
+createServer() creates server
+listen(3000) runs server on port 3000
+
+What is NPM
+NPM stands for Node Package Manager. It is used to install libraries and packages.
+
+Common NPM Commands
+* npm init
+* npm install express
+* npm install
+* npm uninstall package-name
+
+Example
+npm install express
+This installs Express.js for web server development.
+
+Advantages
+* Huge package ecosystem
+* Easy dependency management
+* Faster project setup
