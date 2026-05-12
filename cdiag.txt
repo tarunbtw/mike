@@ -1,0 +1,212 @@
+ ================================================================================  Question No. 1B
+1.Using Draw.io, create two diagrams for a Smart Home Security System: 1. Design a three-layer Edge–Fog–Cloud architecture showing cameras, motion sensors, a home gateway, fog/local servers, and cloud storage. Clearly indicate where video preprocessing, intruder detection using AI, alert generation, temporary caching, and long-term video storage are performed. Draw arrows to show bidirectional data flow and label the type of data transmitted between each layer.
+ 
+Cloud-fog-edge layer architecture
+1.cloud layer
+1.1 cloud storage
+1.2  dashboard
+2.fog layer
+2.1 server
+2.2  preprocessing
+2.3  ai
+2.4  cache
+2.5  alert
+3.Edge Layer
+3.1  camera
+3.2  sensor
+3.3  home
+2. Design a Cloud-only architecture for the same system and include network connectivity components (internet/router) to show how raw video streams reach the cloud. Then add a comparison table analyzing latency, bandwidth usage, reliability, privacy, and fault tolerance between the two architectures.
+Cloud-only architecture
+1.camera
+2.sensor
+3.router
+4.cloud server
+5.processing or cpu
+6.ai
+7.alerts
+8.cloud storage  ================================================================================   Question No. 2B
+A housing society wants a surveillance system that can instantly detect intruders and also store video footage. They want to compare an Edge–Fog–Cloud architecture with a Cloudonly architecture to choose the best option. Using Draw.io, create two diagrams: • Edge–Fog–Cloud surveillance architecture • Cloud-only surveillance architecture Add a comparison table showing differences in latency, bandwidth usage, and reliability.
+Cloud-edge-fog survelliance architecture
+1.cloud layer
+1.1 cloud storage
+1.2 dashboard
+2.fog layer
+2.1 server
+2.2 vedio processing
+2.3 ai
+2.4 cache
+2.5 alert
+3.edge layer
+3.1 camera
+3.2 sensor
+3.3 home
+Cloud-Only Surveillance Architecture
+1.camera
+2.sensor
+3.router
+4.cloud server
+5.video processing
+6.ai
+7.alert
+8.cloud storage  ================================================================================  Question No. 3B
+Design a Smart Agriculture Irrigation System using Draw.io by creating a detailed three-layer Edge Fog–Cloud architecture showing soil moisture sensors, weather sensors, irrigation controllers, farm gateway, regional fog servers, mobile farmer dashboard, and cloud analytics. Clearly indicate where real-time irrigation decisions, sensor data filtering, aggregation, short-term weather-based predictions, anomaly detection, and long-term crop yield prediction analytics are performed. Draw arrows to show bidirectional data flow, label the type of data exchanged between layers, and include failover or offline operation when internet connectivity to the cloud is lost.
+1.Edge Layer
+• Soil  Sensors
+• Weather Sensors
+• Irrigation Controller
+Fog layer
+• Farm Gateway
+• Fog Servers
+ 
+Cloud Layer
+• Cloud Analytics
+• Cloud Storage  ================================================================================  Question No. 4B
+Using Draw.io, design a Platform as a Service (PaaS) deployment architecture for a simple web application by creating a diagram that shows the developer environment, source code repository, build and deployment pipeline, PaaS runtime environment, managed database, load balancer, and end users. Indicate where application development, automated deployment, scaling, monitoring, and platform-managed execution occur, draw arrows to represent the deployment workflow and user request flow,
+1) Laptop
+2) Githib  
+3) Devops
+4) Load Balancer
+5) App Runtime  
+6) Monitoring
+7) Auto-scaling
+8) Mongo DB
+9) Moblie
+ ================================================================================   Question No. 5B
+Using Draw.io, design a cloud-native architecture showing two versions (v1 and v2) of an application running in containers, a load balancer that splits traffic between them, a CI/CD pipeline for deployment, and users accessing the application. Label where deployment, health checks, traffic splitting, and monitoring occur, and draw arrows to show the flow of requests and updates.
+1.user
+2.load Balancer
+3.pipeline
+4.app
+5.monitoring  ================================================================================
+  Question No. 6B
+A manufacturing company wants to monitor machines in real time. Using Draw.io, design an architecture with machine sensors, a local factory server, and cloud analytics. Label tasks such as fault detection, short-term analytics, and long-term performance analysis. Show connections and data flow clearly.
+1. Cloud Layer  
+Performance analysis
+Data Storage
+Advanced Analytics /ml
+Dashboard  2. Fog/local layer Real-time
+Analisis
+Cache  3.edge devices
+Temperature sensor
+Vibration sensor
+Pressure Sensor   ================================================================================  Question No. 7B
+Using Draw.io, design a smart application by creating a three-layer Edge–Fog–Cloud architecture that clearly assigns data collection, preprocessing, intermediate analytics, and long-term processing tasks to the edge, fog, and cloud layers with arrows showing data flow.
+ 
+1.cloud layer
+1.1 cloud server
+2.fog layer
+2.1 fog node
+2,2 data filtering
+2.3 quick analysis
+3.edge layer
+3.1 sensors --> add any four  ================================================================================  Question No. 8B
+A manufacturing company wants to monitor machines in real time. Using Draw.io, design an architecture with machine sensors, a local factory server, and cloud analytics. Label tasks such as fault detection, short-term analytics, and long-term performance analysis. Show connections and data flow clearly.
+1.cloud layer
+1.1 cloud analytics
+1.2 cloud storage
+2.fog layer
+2.1 factory server
+2.2 dashboard
+3. edge layer
+3.1 sensor --> add any 4 sensors  ================================================================================
+ 9B A farm wants an automated irrigation solution. Create a Draw.io diagram with soil sensors and weather sensors at the edge, a farm gateway at the fog layer, and cloud analytics. Label where irrigation decisions, data aggregation, and crop prediction are performed. Use arrows to show how data moves through the system.  1. Edge layer Soil Moisture Sensor
+- Temperature Sensor
+- Weather Sensor  2.fog layer server temporary data storage farm gateway/local server  3. Cloud layer Server
+Cloud Storage
+Cloud Analytics Engine
+- AI  4. Mobeile device Mobile
+ 
+Dashboard  ================================================================================   10B A hospital wants a visual architecture for remote patient monitoring. Using Draw.io, design an Edge Fog–Cloud architecture showing wearable devices, hospital local servers, and cloud storage. Label where emergency alerts, short-term patient monitoring, and medical research analytics are performed. Show the flow of health data across the layers.  1. Edge layer Heart Rate
+Mobile Device functions: - real time collection  - initial filtering  2. Fog layer hospital local server/gateway monitoring dashboard functions: -data aggregation -local; alert handling -temporary storage  3.cloud layer Server
+Cloud Storage (Medical Records Database)
+- Cloud Analytics Engine
+Analytics System
+- Web App functions: -long-term storage -advanced analytics trend analysis  ================================================================================   Question No. 11B
+Draw the architecture diagram for the Web application on Google App Engine using draw.io.
+ 
+1.user
+2.web browser
+3.load balancer
+4.app engine
+5.firestore
+6.cloud storage  ================================================================================ Question No. 12B
+You are asked to design a Smart Traffic Monitoring System. Using Draw.io, create a three-layer diagram (Edge–Fog–Cloud) showing cameras, traffic sensors, and alert systems. Indicate where congestion detection, traffic light control, and long-term traffic analytics should be placed. Draw arrows to show the data flow between layers.  1.cloud layer Cloud storage Traffic analytics platform Dashboard or monitoring system Functions: -long term traffic data storage -predictive analysis -visualization dashboard  2. Fog layer Edge gateway Local traffic control server Ai processing unit Functions: -short term data storage or cache -Congestion detection(Ai-based) -traffic light control( dynamic signal timing) - alert generation  3.edge layer or bottom layer Traffic cameras Road sensors (court, speed) Traffic signal controllers Emergency alert devices Functions: -Real time data collection -initial filtering and preprocessing  ================================================================================    Question No. 13B: Real-Time Inventory Architecture
+To build this diagram, use a standard three-tier web architecture (Client, Application, Data) suited for real-time updates.
+1. Data / Cloud Layer (Bottom/Back Layer)
+Components:
+Relational Database (e.g., PostgreSQL or MySQL)
+In-Memory Cache (e.g., Redis)
+Functions:
+Long-term storage of inventory records and transaction history.
+High-speed caching for real-time stock-level lookups.
+2. Backend / Application Layer (Middle Layer)
+Components:
+API Gateway
+Inventory Management Microservice
+Message Broker / Event Queue (e.g., Kafka or RabbitMQ)
+Functions:
+Process incoming sales and stock updates.
+Handle real-time event streaming to prevent overselling.
+Trigger low-stock alerts to administrators.
+3. Client / Edge Layer (Top/Front Layer)
+Components:
+Point of Sale (POS) Terminals
+Warehouse Barcode Scanners
+E-commerce Web/Mobile App
+Functions:
+Capture user purchases and warehouse stock scans.
+Display real-time stock availability to users.
+Data Flow (Arrows): Draw arrows pointing from the Client devices to the Backend API (Request/Update), and from the Backend to the Data Layer (Read/Write). Add return arrows for the system's responses (e.g., Stock Confirmed).  ================================================================================
+ Question No. 14B: Mobile Game Backend Architecture
+Mobile games require high throughput and real-time state synchronization, which fits a slightly different tier structure.
+1. Cloud / Data Layer
+Components:
+Player Profile Database (NoSQL, e.g., MongoDB)
+Leaderboard Database (In-memory, e.g., Redis)
+Cloud Storage / CDN (Content Delivery Network)
+Functions:
+Store permanent player profiles, progress, and inventory.
+Manage high-speed global leaderboards.
+Deliver downloadable game assets (patches, DLCs).
+2. Game Server Layer
+Components:
+Load Balancer
+Real-Time Game Servers / Matchmaking Service
+WebSocket / UDP Gateway
+Functions:
+Handle real-time player state synchronization.
+Group players into active matches based on skill/region.
+Perform anti-cheat validation.
+3. Client Layer
+Components:
+Mobile Game App (User Device)
+Functions:
+Render game graphics and UI locally.
+Capture player inputs and send them to the server.
+Data Flow (Arrows): Continuous two-way arrows between the Mobile App and Game Servers (WebSocket/UDP for live gameplay). Arrows from Game Servers to the Database for saving match results, and arrows from the App to the CDN for downloading updates.  ================================================================================
+Question No. 15B: Machine Learning Execution Workflow (Cloud vs. Local)
+For this, you will draw two separate workflows side-by-side or top-and-bottom, followed by a comparison table.
+Diagram 1: Cloud-Based Execution Workflow (Google Colab)
+Components:
+User Device (Browser)
+Internet Connection
+Google Colab Environment (Jupyter Notebook interface)
+Cloud Compute Resources (Virtual CPU / High-end GPUs / TPUs)
+Cloud Storage (Google Drive)
+Functions & Data Flow (Arrows):
+User Device: Writes code and clicks "run" -> Arrow (Code/Commands) -> Internet.
+Internet -> Arrow -> Google Colab Environment.
+Colab Environment sends instructions -> Arrow -> Cloud CPU/GPU (where heavy computation occurs).
+Cloud CPU/GPU pulls/saves data -> Two-way Arrow -> Cloud Storage (Google Drive) (where datasets and final trained models are stored).
+Colab Environment sends results -> Arrow -> User Device (Program Output / Visualizations displayed).
+Diagram 2: Local Execution Workflow
+Components:
+User Laptop Interface (IDE/Terminal)
+Local RAM
+Local CPU / Integrated GPU
+Local Hard Drive / SSD
+Functions & Data Flow (Arrows):
+User Interface: Writes code -> Arrow -> Local CPU/GPU (Computation occurs here, slowly).
+Local CPU/GPU loads data from -> Two-way Arrow -> Local Hard Drive/SSD (Storage).
+Local CPU/GPU sends results -> Arrow -> User Interface (Program Output).
+ 
