@@ -1,0 +1,487 @@
+Labsheet 2. Aim
+To demonstrate on-demand access to cloud computing resources using Google Cloud Shell Free
+Tier, without creating any billable cloud services or requiring a billing account. 
+Procedure
+Step 1: Access Google Cloud Console
+1. Open a browser and go to: https://console.cloud.google.com
+2. Sign in using your Google account  Step 2: Activate Google Cloud Shell
+1. Click the Cloud Shell (>_) icon at the top-right corner.  Step 3: Verify the Linux Environment
+uname -a  Step 4: Check User and Directory
+whoami pwd ls  Step 5: Create a Working Directory
+mkdir free_cloud_lab cd free_cloud_lab  Step 6: Create and Edit a File
+echo "This file is created using Google Cloud Shell Free Tier." > lab.txt
+cat lab.txt  Step 7: Check Resource Allocation
+free -h
+df -h  Step 8: Verify Cloud SDK Availability
+gcloud –version  Step 9: Exit the Session
+exit  ================================================================================
+  labsheet 3 Aim
+To demonstrate different cloud application domains by executing compute-intensive programs using
+Google Colab and comparing cloud-based execution with local execution.  Procedure
+Step 1: Access Google Colab
+1. Open a browser and go to: https://colab.research.google.com
+2. Sign in using your Google account.
+3. Click New Notebook.  Step 2: Verify Runtime Environment
+In the first cell, run:
+import platform
+platform.platform()  Step 3: Execute a Compute-Intensive Program
+Run the following Python code to compute a large matrix multiplication:
+import time
+import numpy as np
+# Increase size until local machine slows significantly
+size = 8000 # adjust if your local machine crashes (try 4000–8000)
+A = np.random.rand(size, size)
+B = np.random.rand(size, size)
+start = time.time() C = A @ B
+end = time.time()
+print(f"Matrix size: {size} x {size}")
+print("Execution Time:", end - start, "seconds")  Step 4: Run Locally for Comparison
+Students may run the same program on their local machine and record the execution time.  Step 5: Compare Execution Times
+Create a table in the observation:
+Platform Execution Time
+Local System ________
+Google Colab ________  Step 6: Data-Intensive Workload – Large Dataset Processing
+import pandas as pd
+data = pd.DataFrame({
+'A': range(1, 5000001),
+'B': range(5000000, 10000000)
+})
+data['C'] = data['A'] + data['B']
+print(data.head()) • The code creates a large dataset with millions of rows.
+• Performing operations on such large data simulates a data-intensive workload.
+• This helps us understand how cloud platforms handle big data efficiently.  Step 7: Application Domain – Scientific Computing
+import math
+result = [math.sqrt(i) for i in range(1, 1000000)]
+print("Scientific computation completed") The scientific computation involving the calculation of square roots for 1,000,000 values was
+executed successfully in the cloud-based notebook environment. The program completed without any delay, error, or system slowdown, indicating sufficient
+CPU and memory availability.
+• The cloud environment efficiently handled the compute-intensive loop-based operation,
+demonstrating its capability to support large-scale numerical computations.
+• Resource indicators (RAM/Disk) remained stable during execution, showing effective resource
+management by the cloud platform.  Step 8: Application Domain – Machine Learning
+from sklearn.linear_model import LinearRegression
+import numpy as np
+X = np.random.rand(100000, 1)
+y = 3 * X + np.random.rand(100000, 1)
+model = LinearRegression()
+model.fit(X, y)
+print("Machine learning model trained successfully") It was observed that the cloud-based notebook efficiently trained a machine learning model
+on a large dataset without performance degradation. This demonstrates the advantage of cloud
+execution in handling compute-intensive machine learning tasks compared to local execution. 
+Step 9: Application Domain – Image Processing
+from PIL import Image
+import numpy as np
+img = Image.new("RGB", (3000, 3000))
+pixels = np.array(img)
+print("Image processed with shape:", pixels.shape) It was observed that the cloud-based notebook efficiently processed a high-resolution image
+without performance degradation. This demonstrates the advantage of cloud execution for image
+processing tasks compared to local execution.  Step 10: Compare Cloud vs Local Execution
+Observe execution speed and note that cloud execution is faster and scalable compared to local
+system execution.  Step 11: Save and Close Notebook
+1. Click File → Save a copy in Drive.
+2. Close the notebook.   ================================================================================
+  labsheet 6 Aim
+To deploy, modify, and redeploy a simple web application using the Platform as a Service (PaaS)
+model and observe platform-managed execution without provisioning servers.  Procedure
+Step 1: Open Google Cloud Console
+1. Visit: https://console.cloud.google.com 2. Sign in and select or create a project.  Step 2: Activate Cloud Shell
+Click the Cloud Shell (>_) icon  Step 3: Create Application Directory
+mkdir appengine_lab cd appengine_lab  Step 4: Create a Simple Web Application
+Create main.py:
+nano main.py
+Paste:
+from flask import Flask
+app = Flask(__name__)
+@app.route('/')
+def home(): return "Hello from Google App Engine Free Tier!"
+if __name__ == '__main__':
+app.run(host='0.0.0.0', port=8080)  Step 5: Create App Engine Configuration
+Create app.yaml:
+cd appengine_lab (Make sure you are inside your project folder)
+nano app.yaml
+Paste this inside app.yaml:
+runtime: python311
+entrypoint: gunicorn -b :$PORT main:app automatic_scaling:
+ max_instances: 1  Step 6: Create Requirements File (Dependency Specification)
+Since the application uses the Flask framework, create a requirements.txt file to specify the required
+dependencies for deployment on Google App Engine.
+Create requirements.txt:
+nano requirements.txt
+Add the following line:
+Flask==2.3.3
+gunicorn==21.2.0  Step 7: Deploy the Application
+gcloud app deploy  Step 8: Access the Application
+gcloud app browse  Step 9: Modify and Redeploy
+Edit main.py:
+return "Updated version deployed on App Engine!"
+Redeploy:
+gcloud app deploy
+Refresh the browser. 
+Step 10: Observe Platform Management
+Note:
+• No VM creation  No OS configuration
+• Automatic scaling  ================================================================================
+  Labsheet 7A  Aim
+To create multiple versions of a cloud application, route traffic between them, and observe
+automatic scaling behavior using Google App Engine within free-tier limits.  Step 1: Create Your Workspace
+We need a clean folder so we don't mix files up.
+Commands:
+mkdir my-app-engine-lab
+cd my-app-engine-lab 
+Step 2: Create the 3 Essential Files
+File 1: requirements.txt (The "Shopping List")
+Command:
+nano requirements.txt
+Add:
+Flask==3.0.0
+gunicorn==21.2.0 Save & Exit: Ctrl+O, Enter, Ctrl+X 
+File 2: app.yaml (The "Settings")
+Command:
+nano app.yaml
+Add:
+runtime: python311
+instance_class: F1
+automatic_scaling:
+ max_instances: 1 Save & Exit: Ctrl+O, Enter, Ctrl+X 
+File 3: main.py (The "Application")
+Command:
+nano main.py
+Add:
+from flask import Flask
+import os
+app = Flask(__name__)
+@app.route('/')
+def home():
+return "<h1>This is Version 1</h1>"
+if __name__ == '__main__':
+port = int(os.environ.get('PORT', 8080))
+app.run(host='0.0.0.0', port=port) Save & Exit: Ctrl+O, Enter, Ctrl+X
+Step 3: Initialize App Engine
+Command:
+gcloud app create --region=us-central  Step 4: Deploy Version 1
+Command:
+gcloud app deploy --version=v1 --quiet
+Check:
+gcloud app browse  Step 5: Create and Deploy Version 2
+Modify:
+sed -i 's/Version 1/Version 2/g' main.py
+Deploy:
+gcloud app deploy --version=v2 --quiet  Step 6: Split the Traffic
+Command:
+gcloud app services set-traffic default --splits v1=0.5,v2=0.5 Test:
+curl https://$(gcloud config get-value project).uc.r.appspot.com  Step 7: Cleanup(most important)
+Delete versions:
+gcloud app versions delete v1 v2 --quiet  ================================================================================
+  Labsheet 7B Aim
+To create multiple versions of a cloud-native application, route traffic between them using a
+load balancer, and observe traffic splitting without incurring cloud costs.  Step 1: Create Workspace & Docker Network
+Run the following commands in Google Cloud Shell one by one::
+mkdir versioning-lab
+cd versioning-lab
+docker network create lab-net 
+Step 2: Create Application Files
+Create requirements.txt
+Command:
+nano requirements.txt  Flask==3.0.0
+gunicorn==21.2.0
+Save & Exit: Ctrl+O, Enter, Ctrl+X
+Create main.py (Version 1)
+Command:
+nano main.py
+Paste:
+def home():
+return f"<h1>Response from: Version 1</h1><p>Container ID:
+{socket.gethostname()}</p>"from flask import Flask
+import socket
+app = Flask(__name__)
+@app.route('/')
+if __name__ == '__main__':
+app.run(host='0.0.0.0', port=5000  Create Dockerfile
+Command:
+nano Dockerfile
+Paste:
+FROM python:3.9-slim
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+CMD ["python", "main.py"]  Step 3: Build & Deploy Version 1
+docker build -t myapp:v1 . docker run -d --net lab-net --name app-v1 myapp:v1
+To check if loaded
+docker ps  Step 4: Create, Build & Deploy Version 2
+Modify Version String:
+sed -i 's/Version 1/Version 2/g' main.py
+Build and Run one by one :
+docker build -t myapp:v2 .
+docker run -d --net lab-net --name app-v2 myapp:v2  Step 5: Configure Nginx Load Balancer
+Create nginx.conf
+nano nginx.conf
+Paste:
+events {}
+http {
+upstream backend_servers {
+server app-v1:5000 weight=1;
+server app-v2:5000 weight=1;
+}
+server {
+listen 8080;
+location / {
+proxy_pass http://backend_servers;
+} } }  Save & Exit: Ctrl+O, Enter, Ctrl+X
+Run Load Balancer:
+docker run -d --net lab-net -p 8080:8080 -v $(pwd)/nginx.conf:/etc/nginx/nginx.conf:ro --
+name load-balancer nginx  Step 6: Test Traffic Splitting
+Test using curl:
+for i in {1..10}; do curl localhost:8080; echo; done  Step 7: also output can be checked using with web preview:
+Step 8:Click on we preview icon and port 8080
+Refresh many times and observe the changes in the version and the containers  Step 9: Try to change weights and add versions 
+Step 10: Clean
+docker rm -f app-v1 app-v2 load-balancer
+docker network rm lab-  ================================================================================
+   labsheet 8 Aim
+To containerize a Python Flask web API, run it on Google Cloud infrastructure using Cloud Shell, and invoke its endpoints to process file uploads.  Procedure
+Step 1: Open Google Cloud Console and Cloud Shell
+Login to Google Cloud Console (console.cloud.google.com).
+Click the Activate Cloud Shell icon (>_) in the top right corner.
+Step 2: Create Application Directory
+Run the following commands in the terminal:
+Bash
+mkdir cloudrun_lab
+cd cloudrun_lab Step 3: Create the Python API Application
+Open the nano editor:
+Bash
+nano app.py
+
+Paste the following code into the editor:
+Python
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+def evaluate_expression(expression: str) -> int:
+    """Evaluates a mathematical expression given as a string."""
+    if not expression:
+        return 0
+    stack = []
+    current_num = 0
+    operator = '+'
+    expression = expression.replace(" ", "") + '+'
+    
+    for char in expression:
+        if char.isdigit():
+            current_num = (current_num * 10) + int(char)
+        elif char in "+-*/":
+            if operator == '+': stack.append(current_num)
+            elif operator == '-': stack.append(-current_num)
+            elif operator == '*': stack.append(stack.pop() * current_num)
+            elif operator == '/': stack.append(int(stack.pop() / current_num))
+            operator = char
+            current_num = 0
+            
+    return sum(stack)
+
+@app.route('/')
+def home():
+    return "Send a POST request with a text file to the /upload endpoint!\n"
+
+@app.route('/upload', methods=['POST'])
+def calculate_from_file():
+    if 'file' not in request.files:
+        return jsonify({"error": "No file was sent in the request."}), 400
+        
+    file = request.files['file']
+    
+    if file.filename == '':
+        return jsonify({"error": "File name is empty."}), 400
+        
+    if file:
+        content = file.read().decode('utf-8')
+        lines = content.splitlines()
+        
+        results = []
+        for line in lines:
+            line = line.strip()
+            if line: 
+                try:
+                    res = evaluate_expression(line)
+                    results.append({"equation": line, "result": res})
+                except ZeroDivisionError:
+                    results.append({"equation": line, "error": "Division by zero"})
+                except Exception:
+                    results.append({"equation": line, "error": "Invalid format"})
+                    
+        return jsonify({"batch_results": results})
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)
+
+(Save and exit: Press Ctrl+O, Enter, then Ctrl+X)
+Step 4: Create Requirements File
+Bash
+echo "flask" > requirements.txt
+
+Step 5: Create Dockerfile
+Open the nano editor:
+Bash
+nano Dockerfile
+
+Paste the following configuration:
+Dockerfile
+FROM python:3.9-slim
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+EXPOSE 8080
+CMD ["python", "app.py"]
+
+(Save and exit: Press Ctrl+O, Enter, then Ctrl+X)
+Step 6: Build the Container Image
+Build the Docker image locally in Cloud Shell:
+Bash
+docker build -t cloudrun-lab-image .
+
+Step 7: Run the Container
+Run the container in detached mode, mapping port 8080, and automatically removing it when stopped to prevent naming conflicts:
+Bash
+docker run --rm -d -p 8080:8080 --name my-running-app cloudrun-lab-image  Step 8: Create a Test File
+Create a text file with math problems to send to the API:
+Bash
+
+echo -e "10 + 5 * 2\n100 / 4 - 5\n8 * 8" > math.txt
+Step 9: Invoke the Application via Command Line
+Use curl to send a POST request with the text file to your running container:
+Bash
+curl -X POST -F "file=@math.txt" http://localhost:8080/upload  Step 10: Cleanup (Optional)
+To stop the running container:
+Bash
+docker stop my-running-app  ================================================================================
+  Labsheet 9  Aim
+To demonstrate the limitations of centralized cloud computing by executing latency-sensitive tasks, observing network dependency, and identifying performance constraints.  Procedure
+Step 1: Access Google Colab
+Visit: https://colab.research.google.com
+Create a new Python notebook.
+Step 2: Measure Network Latency
+Run:
+import os
+os.system("ping -c 5 google.com")
+Observe round-trip times.
+Step 3: Simulate Latency-Sensitive Task
+import time
+
+start = time.time()
+time.sleep(0.2)  # Simulated network delay
+end = time.time()
+
+print("Response time:", end - start)  Step 4: Execute Multiple Sequential Tasks
+import time
+
+times = []
+for i in range(10):
+    start = time.time()
+    time.sleep(0.2)
+    times.append(time.time() - start)
+
+print("Average response time:", sum(times)/len(times))  Step 5: Discuss Impact
+Note that even small delays accumulate and affect responsiveness.   ================================================================================  Labsheet 10 Aim
+To simulate an edge computing workflow by performing data preprocessing before cloud execution, reducing data transfer, and analyzing latency improvement.  
+Procedure
+Step 1: Open Google Cloud Console and Cloud Shell
+Login and open Cloud Shell.
+Step 0 : Open Google Cloud Console and Cloud Shell run this command every libraries are working or not
+gcloud services enable cloudfunctions.googleapis.com 
+Step 2: Create Function Directory
+mkdir edge_lab && cd edge_lab
+Step 3: Create a new test file
+nano test_edge.py Step 4: Paste this code inside:
+
+
+import time
+import json
+
+def preprocess(data):
+    start = time.time()
+
+    # Simulated edge preprocessing
+    filtered = [x for x in data if x > 50]
+
+    latency = time.time() - start
+
+    return {
+        "original_data": data,
+        "filtered_data": filtered,
+        "original_size": len(data),
+        "filtered_size": len(filtered),
+        "data_reduced_by": len(data) - len(filtered),
+        "preprocessing_latency_sec": round(latency, 6)
+    }
+
+# Test data
+input_data = [10, 20, 60, 80, 5, 100]
+
+print("=== Edge Computing Simulation ===")
+print(f"Input Data: {input_data}")
+
+result = preprocess(input_data)
+
+print(f"\n--- RESULT ---")
+print(f"Original Data     : {result['original_data']}")
+print(f"Filtered Data     : {result['filtered_data']}")
+print(f"Original Size     : {result['original_size']}")
+print(f"Filtered Size     : {result['filtered_size']}")
+print(f"Data Reduced By   : {result['data_reduced_by']} elements")
+print(f"Latency           : {result['preprocessing_latency_sec']} sec")
+
+Step 5 — Save and Exit:
+Press Ctrl + O → Enter → Ctrl + X
+ Step 6: Run the file
+python3 test_edge.py  Step 7: Compare Without Preprocessing
+python3 -c "   Step 8: Compare With Preprocessing
+python3 -c "   Step 9: Delete after lab:
+cd ~
+rm -rf edge_lab  ================================================================================  labsheet 12  Aim To configure Identity and Access Management (IAM) by creatingusers, assigning roles, implementing least-privilege access, and verifyingaccess control enforcement.  Procedure Step 1: Context Initialization  Command: Bash  gcloud config set project labsheet12-491306  Step 2: Implementing Least-Privilege Access  Command: Bash  gcloud projects add-iam-policy-binding labsheet12-491306 \  --member="user:gourabgkcoding@gmail.com" \  --role="roles/viewer"  Step 3: Security Audit & Verification  Command: Bash  gcloud projects get-iam-policy labsheet12-491306 \  --flatten="bindings[].members" \  --format="table(bindings.role, bindings.members)" \ --filter="bindings.members:gourabgkcoding@gmail.com"  Step 4: Verification of Access (The Denial Test)  Command: Bash  # Attempt to create a storage bucket (This MUST fail)  gsutil mb -p labsheet12-491306 gs://test-bucket-denial-check-$(date +%s)  Step 5: Granular Privilege Escalation Command: Bash gcloud projects add-iam-policy-binding labsheet12-491306 \ --member="user:gourabgkcoding@gmail.com" \ --role="roles/cloudfunctions.invoker"  Step 6: Final Policy Validation Command: Bash gcloud projects get-iam-policy labsheet12-491306 \ --flatten="bindings[].members" \ --format="table(bindings.role, bindings.members)" \ --filter="bindings.members:gourabgkcoding@gmail.com"   ================================================================================  Labsheet 13 Aim  To observe data isolation in a managed cloud service, analyze application-level access controls, and relate the observations to cloud data security and privacy principles.  Procedure  Step 1: Open Google Cloud Console and Cloud Shell Login and open Cloud Shell.  Step 2: Create Application Directory  mkdir security_lab  cd security_lab  Step 3: Create Application Code  Create main.py:  from flask import Flask, request, abort
+app = Flask(__name__)
+# Use standard double or single quotes
+DATA = {
+"user1": "Private Data of User 1",
+"user2": "Private Data of User 2"
+}
+@app.route('/data')
+def get_data():
+# Indentation is required inside the function
+user = request.args.get("user")
+if user not in DATA:
+abort(403)
+return DATA[user]
+if __name__ == '__main__':
+app.run(debug=True) 
+Step 4: Create App Configuration
+Create app.yaml:
+runtime: python39  Step 5: Create requirements.txt
+GNU nano 7.2
+requirements.txt
+Flask==2.0.1
+gunicorn==20.1.0  Step 6: Deploy Application
+Initialize the project (if prompted to choose a region, pick one like us-central):
+gcloud app create
+But it is showing error and asks for billing account so that we use another method
+ Step 7: Install & Run the App
+Instead of deploying to the web, you will run the app locally on the Cloud Shell virtual
+machine:
+1. Install Flask:
+pip3 install -r requirements.txtStep 8:Start the application:
+python3 main.py
+You should see a message saying: Running on http://0.0.0.0:8080/.
+ Step 9: the Installation error
+Run the install command again, but this time use the --user flag and the "no-warn" flag to
+keep it clean. We will also upgrade Flask to a version that makes everyone happy:
+pip3 install --user flask==3.0.0 --no-warn-script-location
+ Step 10: Start the Application
+Now that the library is installed in your user directory, start the Python script:
+python3 main.py  Step 11: Access Data as authorized User
+Once the terminal says it is running, follow the Web Preview steps to finish your lab:
+1. 2. 3. Click the Web Preview icon (top right of Cloud Shell).
+Select Preview on port 8080.
+Test 1 (Authorized): In the new tab, add /data?user=user1 to the end of the
+URL.
+4.
+5. Test 2 (Unauthorized): Change the URL to /data?user=admin.
+6.
